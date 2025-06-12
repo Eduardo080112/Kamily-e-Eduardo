@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nosso Amor 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+    #timer {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+    }
+    .slideshow {
+      position: relative;
+      max-width: 100vw;
+      height: 100vh;
+    }
+    .slide {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .active {
+      display: block;
+    }
+    audio {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Te amo! 💘</h1>
+  <div id="timer">Tempo de namoro: ...</div>
+
+  <div class="slideshow">
+    <div class="slide active"><img src="fotos/foto1.jpeg" /></div>
+    <div class="slide"><img src="fotos/foto2.jpeg" /></div>
+    <div class="slide"><img src="fotos/foto3.jpeg" /></div>
+    <div class="slide"><img src="fotos/foto4.jpeg" /></div>
+    <div class="slide"><img src="fotos/foto5.jpeg" /></div>
+    <div class="slide"><img src="fotos/foto6.jpeg" /></div>
+    <div class="slide"><img src="fotos/foto7.jpeg" /></div>
+    <div class="slide"><img src="fotos/foto8.jpeg" /></div>
+    <div class="slide"><img src="fotos/foto9.jpeg" /></div>
+    <div class="slide"><img src="fotos/foto10.jpeg" /></div>
+  </div>
+
+  <audio controls autoplay loop>
+    <source src="https://dl.dropboxusercontent.com/scl/fi/8z3f6x0tmdmshg3fjjm2j/Entregador-de-Flor.mp3?rlkey=hyhxr3fj0y23f5xhjrs3pm2hz&dl=0" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <script>
+    const startDate = new Date("2024-09-04T18:30:00");
+    const timer = document.getElementById("timer");
+    setInterval(() => {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+
+      timer.textContent = `Tempo de namoro: ${dias} dias, ${horas}h ${minutos}min ${segundos}s`;
+    }, 1000);
+
+    const slides = document.querySelectorAll(".slide");
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove("active");
+      current = (current + 1) % slides.length;
+      slides[current].classList.add("active");
+    }, 3000);
+  </script>
+</body>
+</html>
